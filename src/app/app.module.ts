@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MyAutocompleteComponent} from "./my-autocompleate/my-autocomplete.component";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {MyAutocompleteComponent} from "./my-autocompleate/my-autocomplete.compon
     BrowserModule,
     MatAutocompleteModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,5 +7,5 @@ import {TestInterface} from "./interfaces/test-interface";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title:TestInterface = {name: "initInterface", id: 0}
+  title:TestInterface = {name: "initInterface", id: 0, grades: []}
 }

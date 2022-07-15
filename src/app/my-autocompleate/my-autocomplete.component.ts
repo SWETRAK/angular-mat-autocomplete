@@ -10,9 +10,9 @@ import {MatAutocompleteTrigger} from "@angular/material/autocomplete";
 })
 export class MyAutocompleteComponent implements OnInit {
   myControl: FormControl;
-  allOptions: TestInterface[];
-  options: TestInterface[];
-  selectedOption?: TestInterface;
+  allOptions: TestInterface[]; // array with all options
+  options: TestInterface[]; // array with filtered and matching option
+  selectedOption?: TestInterface; // variable with currently selected option
 
   // Variable for receive data from parent model
   @Input() initValue?: TestInterface;
@@ -26,10 +26,12 @@ export class MyAutocompleteComponent implements OnInit {
     this.allOptions = [
       {
         name: "test5",
+        grades: [],
         id:5
       },
       {
         name: "test3",
+        grades: [],
         id:2
       }
     ];
@@ -50,14 +52,11 @@ export class MyAutocompleteComponent implements OnInit {
           this.myControl.setValue(this.allOptions.filter(option => option.name === value)[0]);
           this._auto?.closePanel();
         }
-        console.log(this.selectedOption)
+
         // if handwritten value doesn't match with any of elements (that means new value)
-        // if(this.allOptions.filter(option => option.name === value).length === 0 && this.selectedOption !== {name: value.name}){
-        //   const newSystem: TestInterface = {name: value.name}
-        //   this.setSelectedOption(newSystem);
-        //   this.myControl.setValue(newSystem);
-        //   console.log(this.myControl.value);
-        // }
+        if (typeof value === "string" && this.selectedOption?.name !== value) {
+          this.selectedOption = {name: value, grades: []}
+        }
       }
     });
   }
@@ -65,6 +64,7 @@ export class MyAutocompleteComponent implements OnInit {
   ngOnInit(): void {
     // Setting initial value into form
     if(this.initValue !== undefined) {
+      this.selectedOption = this.initValue;
       this.myControl.setValue(this.initValue);
       this.myControl.updateValueAndValidity({onlySelf: false, emitEvent: true});
     }
@@ -80,8 +80,10 @@ export class MyAutocompleteComponent implements OnInit {
     return option.name;
   }
 
-  setValueToAutocompleter() {
-
+  // Method to display value when button clicked
+  drukuj() {
+    console.log(this.selectedOption);
   }
 
 }
+
