@@ -1,0 +1,16 @@
+<div class="custom-wrapper-example" matAutocompleteOrigin #origin="matAutocompleteOrigin">
+  <input
+    matInput
+    name="text_input"
+    [formControl]="myControl"
+    [matAutocomplete]="auto"
+    [matAutocompleteConnectedTo]="origin">
+</div>
+
+<!--
+  Autocomplete with whole element as option not only string
+
+-->
+<mat-autocomplete #auto="matAutocomplete" [displayWith]="getOptionText" (optionSelected)="setSelectedOption($event.option.value)">
+  <mat-option *ngFor="let option of options" [value]="option">{{option.name}}</mat-option>
+</mat-autocomplete>
